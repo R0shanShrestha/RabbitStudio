@@ -106,7 +106,10 @@ const Project = () => {
   );
 
   return (
-    <section ref={container} className=" overflow-hidden">
+    <section ref={container} className="  overflow-hidden my-5 ">
+      <div className="intro flex px-10  w-full py-10">
+        <h1 className="text-4xl font-semibold uppercase">Featured work ( +100 projects )</h1>
+      </div>
       {imageArr.map((Crd, idx) => (
         <ProjectCard
           key={idx}

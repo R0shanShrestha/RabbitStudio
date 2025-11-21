@@ -28,19 +28,18 @@ const VideoPlayer = () => {
       duration: 5,
       height: "100vh",
       width: "100vw",
-      padding: 0,
       margin: 0,
     });
 
     tl.to(videoStracher.current, {
-      borderRadius: 0,
+      borderRadius: '1rem',
       duration: 5,
       ease: "power1.in",
       delay: 4,
-      width: "95vw",
-      height: "95vh",
-      paddingTop: "50px",
-      margin: 0,
+      width: "90vw",
+      height: "85vh",
+
+      margin: '5rem',
     });
   }, []);
   return (
@@ -52,9 +51,16 @@ const VideoPlayer = () => {
 
       <div
         ref={videoStracher}
-        className="player w-[95vw] pt-[50px]  h-[95vh] my-5 rounded-2xl overflow-hidden"
+        className="player w-[90vw]  mt-20 h-[85vh]    items-center my-5 rounded-2xl overflow-hidden"
       >
-        <NextVideo src={video} className="h-full w-full object-cover" />
+        <NextVideo
+          src={video}
+          controls={false}
+          autoplay
+          loop
+          muted
+          className="h-full w-full object-cover"
+        />
         {/* <img src={t2.src} alt="test" className="h-full w-full object-cover" /> */}
       </div>
     </section>
