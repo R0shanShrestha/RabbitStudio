@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+# frames
+public/frames/
 
 # next.js
 /.next/
