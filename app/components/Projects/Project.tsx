@@ -79,7 +79,8 @@ const Project = () => {
       Cards.forEach((card, idx) => {
         ScrollTrigger.create({
           trigger: card,
-          start: "top top",
+          start: "top 0px",
+          markers:true,
           end: "bottom top",
           pin: true,
           pinSpacing: idx === Cards.length - 1,
@@ -108,7 +109,9 @@ const Project = () => {
   return (
     <section ref={container} className="  overflow-hidden my-5 ">
       <div className="intro flex px-10  w-full py-10">
-        <h1 className="text-4xl font-semibold uppercase">Featured work ( +100 projects )</h1>
+        <h1 className="text-4xl font-semibold uppercase">
+          Featured work ( +100 projects )
+        </h1>
       </div>
       {imageArr.map((Crd, idx) => (
         <ProjectCard

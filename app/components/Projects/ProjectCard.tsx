@@ -8,7 +8,7 @@ const ProjectCard = ({ url, desc, title, idx }: props) => {
   return (
     <div
       key={idx}
-      className="cardAnime z-10 w-full gap-50   bg-white text-black  px-20  py-10 text-8xl flex justify-between"
+      className="cardAnime z-10 w-full gap-50 h-screen   bg-white text-black  px-20  py-10 text-8xl flex justify-between"
     >
       <div className="z-10">
         <h1 className="font-extrabold ">{idx}</h1>
@@ -17,7 +17,7 @@ const ProjectCard = ({ url, desc, title, idx }: props) => {
         <div className=" text-4xl font-semibold">
           <h1>{title}</h1>
         </div>
-        <div className="max-h-[350px] z-10">
+        <div className="max-h-[500px] z-10">
           <img
             src={url}
             alt="Loading..."

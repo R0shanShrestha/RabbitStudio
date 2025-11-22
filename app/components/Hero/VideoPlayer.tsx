@@ -1,12 +1,11 @@
 "use client";
 import React, { useRef } from "react";
-import t2 from "../../public/project1.png";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import video from "../../videos/ts.mp4";
+import video from "@/videos/ts.mp4";
 import NextVideo from "next-video";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 
 const VideoPlayer = () => {
   const videoStracher = useRef(null);
@@ -32,14 +31,14 @@ const VideoPlayer = () => {
     });
 
     tl.to(videoStracher.current, {
-      borderRadius: '1rem',
+      borderRadius: "1rem",
       duration: 5,
       ease: "power1.in",
       delay: 4,
       width: "90vw",
       height: "85vh",
 
-      margin: '5rem',
+      marginTop: "5rem",
     });
   }, []);
   return (

@@ -40,7 +40,7 @@ const Insights = () => {
   ];
 
   return (
-    <section className="px-10 py-20 gap-20 flex flex-col">
+    <section className="px-10 z-40  py-20 gap-20 flex flex-col ">
       <div className="heading flex justify-between items-center">
         <h1 className="text-4xl font-semibold">Insights</h1>
         <h2 className="flex gap-1 items-center uppercase text-sm">
@@ -95,7 +95,7 @@ const Insights = () => {
                   width: 0,
                 });
               }}
-              className="flex justify-start hover:border-none border-t gap-10 py-10 text-xl px-5 relative"
+              className="flex justify-start  hover:border-none border-t gap-10 py-10 text-xl px-5 relative"
             >
               <div className="w-[400px] flex items-center">
                 <div
@@ -123,7 +123,7 @@ const Insights = () => {
 
                 <div
                   ref={bgRef}
-                  className="bg-white h-[50px] w-[50px] rounded-full flex items-center justify-center font-bold"
+                  className="bg-white h-[50px] w-[50px] text-black rounded-full flex items-center justify-center font-bold"
                 >
                   <BsArrowRight className="-rotate-45" />
                 </div>

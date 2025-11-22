@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
         <div className="fixed h-screen w-screen border-none -z-10">
           <img
@@ -35,7 +35,9 @@ export default function RootLayout({
             className="w-full h-full object-cover"
           />
         </div>
-        {children}
+        <div className="h-full w-full text-white">
+          {children}
+        </div>
       </body>
     </html>
   );
