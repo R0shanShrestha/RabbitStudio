@@ -36,21 +36,24 @@ const VideoTracker = () => {
     const ctx = canvas.getContext("2d");
     const img: any = imagesArr[idx];
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const scale = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * scale;
+    canvas.height = window.innerHeight * scale;
 
-    const scaleX = canvas.width / img.width;
-    const scaleY = canvas.height / img.height;
-    const Scale = Math.max(scaleX, scaleY);
+    // const scaleX = canvas.width / img.width;
+    // const scaleY = canvas.height / img.height;
+    // const Scale = Math.max(scaleX, scaleY);
 
-    const newWidth = img.width * Scale;
-    const newHeight = img.height * Scale;
+    ctx.scale(scale, scale);
 
-    const dx = (canvas.width - newWidth) / 2;
-    const dy = (canvas.height - newHeight) / 2;
+    // const newWidth = img.width * Scale;
+    // const newHeight = img.height * Scale;
+
+    // const dx = (canvas.width - newWidth) / 2;
+    // const dy = (canvas.height - newHeight) / 2;
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, dx, dy, newWidth, newHeight);
+    ctx.drawImage(img, 0, 0, canvas.width / scale, canvas.height / scale);
 
     setFrame({
       currentFrame: frame.currentFrame++,
@@ -64,10 +67,12 @@ const VideoTracker = () => {
       scrollTrigger: {
         trigger: parentRef.current,
         start: "top top",
-        end: `+=3000`,
+        end: `+=5000px`,
         scrub: 1,
         // markers: true,
         pin: true,
+        // pinSpacing: false,
+        invalidateOnRefresh: true,
       },
     });
 
@@ -89,8 +94,8 @@ const VideoTracker = () => {
     }
   }, [totalImages]);
   return (
-    <section ref={parentRef} className="w-full h-screen overflow-hidden">
-        <Navbar/>
+    <section ref={parentRef} className="w-full h-screen border overflow-hidden">
+      <Navbar />
       <canvas ref={canvaRef} className="w-full h-full object-cover" />
     </section>
   );

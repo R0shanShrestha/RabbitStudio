@@ -80,10 +80,11 @@ const Project = () => {
         ScrollTrigger.create({
           trigger: card,
           start: "top 0px",
-          markers:true,
+          // markers:true,
           end: "bottom top",
           pin: true,
           pinSpacing: idx === Cards.length - 1,
+          invalidateOnRefresh: true,
         });
 
         if (idx < Cards.length - 1) {
@@ -91,6 +92,8 @@ const Project = () => {
             trigger: Cards[idx + 1],
             start: "top bottom",
             end: "top top",
+            invalidateOnRefresh: true,
+
             onUpdate: (self) => {
               const t = self.progress;
               gsap.set(card, {

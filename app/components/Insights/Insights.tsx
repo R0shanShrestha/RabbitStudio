@@ -39,16 +39,64 @@ const Insights = () => {
     },
   ];
 
+  const parentRef = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: parentRef.current,
+          // start: "top top",
+          start: "top 80%",
+          // end: "bottom top",
+          pinSpacing: false,
+          // scrub: 1,
+          // markers: true,
+        },
+      })
+      .to(".head ", {
+        // duration: 0.3,
+        translateX: 0,
+        ease: "power1.in",
+      })
+      .to(".link ", {
+        // duration: 0.3,
+        ease: "power1.in",
+        translateX: 0,
+      })
+      .to(".aniLink ", {
+        opacity: 1,
+        stagger: 0.4,
+      })
+      .to(".scrollable ", {
+        ease: "power1.in",
+        translateX: 0,
+        scrollTrigger: {
+          trigger: ".scrollable",
+          start: "top 90%",
+          end: "bottom 50%",
+          scrub: 2,
+          // markers: true,
+        },
+      });
+  });
+
   return (
-    <section className="px-10 z-40  py-20 gap-20 flex flex-col ">
+    <section
+      className="px-10 z-40 h-fit  py-20 gap-20 flex flex-col overflow-hidden"
+      ref={parentRef}
+    >
+      {/* animated on enter */}
       <div className="heading flex justify-between items-center">
-        <h1 className="text-4xl font-semibold">Insights</h1>
-        <h2 className="flex gap-1 items-center uppercase text-sm">
+        <h1 className="text-4xl font-semibold -translate-x-100 head">
+          Insights
+        </h1>
+        <h2 className="link flex gap-1 items-center uppercase text-sm translate-x-100">
           More Thoughts <BsArrowRight className="-rotate-45" />
         </h2>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col containerLink ">
         {mockupData.map((item, idx) => {
           const bgRef = useRef(null);
           const hoverBoxRef = useRef(null);
@@ -95,7 +143,7 @@ const Insights = () => {
                   width: 0,
                 });
               }}
-              className="flex justify-start  hover:border-none border-t gap-10 py-10 text-xl px-5 relative"
+              className="flex justify-start aniLink opacity-0  hover:border-none border-t gap-10 py-10 text-xl px-5 relative"
             >
               <div className="w-[400px] flex items-center">
                 <div
@@ -133,8 +181,13 @@ const Insights = () => {
         })}
       </div>
 
-      <div className="flex gap-20  pt-10">
-        <div className=" w-[30%]">
+      <div className="flex gap-20  -translate-x-full  pt-10 scrollable relative">
+        <h1 className="text-5xl ">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
+          incidunt nihil quasi d
+        </h1>
+
+        {/* <div className=" w-[30%] ">
           <h1 className="text-4xl font-semibold">What we do</h1>
         </div>
         <div className="w-full">
@@ -143,7 +196,7 @@ const Insights = () => {
             quas nam nihil animi culpa corrupti repellendus harum autem
             obcaecati nostrum.
           </h2>
-        </div>
+        </div> */}
       </div>
     </section>
   );

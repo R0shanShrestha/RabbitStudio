@@ -5,23 +5,22 @@ import Insights from "./components/Insights/Insights";
 import VideoPlayer from "./components/Hero/VideoPlayer";
 import VideoTracker from "./components/Hero/VideoTracker";
 import Works from "./components/Works/Works";
+import ShowCase from "./components/Projects/ShowCase";
 
 const Home = () => {
   return (
     <>
       {/* Testing 1 */}
 
-      {/* <VideoPlayer /> */}
-
+      <VideoPlayer />
       {/* Testing 2 */}
-      <VideoTracker />
-
+      {/* <VideoTracker /> */}
       {/* Insights */}
       <Insights />
-
+      {/* <Project /> */}
+      <ShowCase />
       {/* <Works /> */}
       <Contact />
-      {/* <Project /> */}
       <Footer />
     </>
   );

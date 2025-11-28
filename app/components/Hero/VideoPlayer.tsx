@@ -1,15 +1,17 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import video from "@/videos/ts.mp4";
+import video from "@/videos/cini.mp4";
 import NextVideo from "next-video";
 import Navbar from "../Navbar";
 
 const VideoPlayer = () => {
   const videoStracher = useRef(null);
   const framer = useRef(null);
+  const navRef = useRef(null);
+  const [mouseMovementTracker, setTacker] = useState({ x: 0, y: 0 });
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -17,9 +19,20 @@ const VideoPlayer = () => {
         trigger: framer.current,
         scrub: true,
         pin: true,
-        end: "bottom -100%",
-
+        // end: "bottom -100%",
         // markers: true,
+      },
+    });
+    tl.to(navRef.current, {
+      translateY: "-100%",
+      duration: 1,
+      ease: "power1.in",
+      scrollTrigger: {
+        trigger: navRef.current,
+        scrub: 1,
+        start: "top top",
+        // markers: true,
+        // end: "bottom 80%",
       },
     });
     tl.to(videoStracher.current, {
@@ -31,27 +44,62 @@ const VideoPlayer = () => {
     });
 
     tl.to(videoStracher.current, {
-      borderRadius: "1rem",
+      borderRadius: "10px",
       duration: 5,
       ease: "power1.in",
       delay: 4,
-      width: "90vw",
-      height: "85vh",
-
+      width: "95vw",
+      height: "95vh",
       marginTop: "5rem",
     });
+    tl.to(navRef.current, {
+      translateY: 0,
+      duration: 1,
+      ease: "power1.in",
+      scrollTrigger: {
+        trigger: navRef.current,
+        scrub: 1,
+        start: "top top",
+        // markers: true,
+        end: "bottom 80%",
+      },
+    });
   }, []);
+
+  const mouseRef = useRef(null);
+
+  useEffect(() => {
+    gsap.to(mouseRef.current, {
+      translateX: mouseMovementTracker.x,
+      translateY: mouseMovementTracker.y,
+      ease: "power.in",
+      opacity: 1,
+      duration: 1,
+    });
+  }, [mouseMovementTracker]);
+
   return (
     <section
       ref={framer}
-      className=" h-screen   flex items-center  justify-center"
+      onMouseMove={(e) => {
+        setTacker({
+          x: e.clientX,
+          y: e.clientY,
+        });
+      }}
+      className=" h-screen flex items-center  justify-center"
     >
-      <Navbar />
-
+      <Navbar navRef={navRef} />
       <div
         ref={videoStracher}
-        className="player w-[90vw]  mt-20 h-[85vh]    items-center my-5 rounded-2xl overflow-hidden"
+        className="player w-full  h-full rounded-2xl    items-center my-5 overflow-hidden"
       >
+        <div
+          ref={mouseRef}
+          className={`absolute w-[50px] h-[50px]  opacity-0 translate-y-[50%] translate-x-[50%]  bg-white z-20 rounded-full text-black text-center flex items-center justify-center font-semibold uppercase shadow-2xl shadow-black cursor-pointer`}
+        >
+          <h4 className="text-sm">play</h4>
+        </div>
         <NextVideo
           src={video}
           controls={false}

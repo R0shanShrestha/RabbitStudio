@@ -28,16 +28,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
-        <div className="fixed h-screen w-screen border-none -z-10">
+        <div className="fixed h-screen w-screen border-none -z-10 ">
           <img
             src={bg.src}
             alt="not found"
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="h-full w-full text-white">
-          {children}
-        </div>
+        <div className="h-full w-full text-white">{children}</div>
       </body>
     </html>
   );
